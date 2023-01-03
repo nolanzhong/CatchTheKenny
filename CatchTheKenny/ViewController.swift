@@ -111,10 +111,19 @@ class ViewController: UIViewController {
             let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel)
             let replayButton = UIAlertAction(title: "Replay", style: UIAlertAction.Style.default) { UIAlertAction in
                 //replay function
+                self.score = 0
+                self.scoreLabel.text = "Score: \(self.score)"
+                self.counter = 10
+                self.timeLable.text = String(self.counter)
+                
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.countDown), userInfo: nil, repeats: true)
+                self.hideTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.hideKenny), userInfo: nil, repeats: true)
             }
             alert.addAction(okButton)
             alert.addAction(replayButton)
             self.present(alert, animated: true)
+            
+            
         }
     }
 
